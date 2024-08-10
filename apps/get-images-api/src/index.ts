@@ -16,21 +16,36 @@ app.get("/", (c) => {
   return c.json({ detail: "Hono API is Up!" });
 });
 
-app.get("/ask", async (c) => {
-  const response = await c.env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
-    messages: [
-      {
-        role: "system",
-        content: `You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know.`,
-      },
-      {
-        role: "user",
-        content: "Tell me the name of capital of Australia",
-      },
-    ],
-  });
+app.post("/ask", async (c) => {
+  try {
+    const { prompt } = await c.req.json();
 
-  return c.json({ detail: response });
+    if (!prompt) {
+      throw new Error("Please enter a valid prompt.");
+    }
+
+    const response = await c.env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+      messages: [
+        {
+          role: "system",
+          content: `You are an assistant for question-answering tasks. If you don't know the answer, just say that you don't know.`,
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    });
+
+    if (!response) {
+      throw new Error("Error getting a valid response.");
+    }
+
+    return c.json({ detail: response });
+  } catch (error) {
+    console.error(`${new Date().toISOString()} - POST /ask Error: `, error);
+    return c.json({ detail: error });
+  }
 });
 
 export default app;
