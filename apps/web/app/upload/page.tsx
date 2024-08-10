@@ -1,10 +1,14 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+
+import { FileUploader } from "./file-uploader";
+import { getErrorMessage } from "../lib/handle-errors";
+import { UploadedFilesCard } from "./uploaded-files-card";
 
 import { Button } from "@repo/ui/src/button";
 import {
@@ -15,11 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@repo/ui/src/form";
-import { getErrorMessage } from "../lib/handle-errors";
-import { FileUploader } from "./file-uploader";
-
 import { useUploadFile } from "@repo/ui/hooks/use-upload-file";
-import { UploadedFilesCard } from "./uploaded-files-card";
 
 const schema = z.object({
   images: z.array(z.instanceof(File)),

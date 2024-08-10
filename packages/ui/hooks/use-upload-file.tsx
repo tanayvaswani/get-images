@@ -23,8 +23,8 @@ export function useUploadFile<T>(key: string, options?: T) {
           throw new Error(response.statusText);
         }
 
-        const resp = (await response.json()) as { url: string };
-        const url = resp.url;
+        const data = (await response.json()) as { url: string };
+        const url = data.url;
 
         const response2 = await fetch(url, {
           method: "PUT",
