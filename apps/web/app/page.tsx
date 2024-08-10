@@ -1,5 +1,6 @@
-import { Button } from "@repo/ui/src/button";
 import { sql } from "drizzle-orm";
+
+import { Button } from "@repo/ui/src/button";
 import { getThemeToggler } from "./lib/get-theme-button";
 import { auth, signIn, signOut } from "./server/auth";
 import { db } from "./server/db";

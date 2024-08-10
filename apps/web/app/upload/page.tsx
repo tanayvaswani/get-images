@@ -31,7 +31,7 @@ export default function ReactHookFormDemo() {
   const [loading, setLoading] = React.useState(false);
   const { uploadFiles, uploadedFiles, isUploading } = useUploadFile(
     "imageUploader",
-    { defaultUploadedFiles: [] }
+    { defaultUploadedFiles: [] },
   );
   const form = useForm<Schema>({
     resolver: zodResolver(schema),

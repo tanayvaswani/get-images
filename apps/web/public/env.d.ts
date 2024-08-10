@@ -2,13 +2,13 @@
 // by running `wrangler types --env-interface CloudflareEnv env.d.ts`
 
 interface CloudflareEnv {
-	GOOGLE_CLIENT_ID: string;
-	GOOGLE_CLIENT_SECRET: string;
-	NEXTAUTH_SECRET: string;
-	R2_ENDPOINT: string;
-	R2_ACCESS_ID: string;
-	R2_SECRET_KEY: string;
-	R2_BUCKET_NAME: string;
-	STORAGE: R2Bucket;
-	DATABASE: D1Database;
+  GOOGLE_CLIENT_ID: string;
+  GOOGLE_CLIENT_SECRET: string;
+  NEXTAUTH_SECRET: string;
+  R2_ENDPOINT: string;
+  R2_ACCESS_ID: string;
+  R2_SECRET_KEY: string;
+  R2_BUCKET_NAME: string;
+  STORAGE: R2Bucket;
+  DATABASE: D1Database;
 }
